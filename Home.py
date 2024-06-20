@@ -99,8 +99,6 @@ col1.write("### 🎢 IMU sensors")
 col1.write("In this step, we are going to upload the IMU sensor data. The data should be in TXT format:")
 number_of_sensors = col2.number_input("Number of IMU sensors", min_value=1, max_value=10, value=1)
 
-imu_df = pd.DataFrame(columns = ['Type', 'X_ori', 'Y_ori', 'Z_ori', 'Time', 'IMU'])
-
 def IMU_sensor_add (i):
     col1, col2, col3, col4, col51,col52,col53, col6 = st.columns([1,1,1,1,0.5,0.5,0.5,2])
     type_ = col1.selectbox(f"Type of sensor", options=["Bucket","Arm","Boom","Inside"]           , index=3, key=f"IMU_{i}Type")
@@ -113,12 +111,13 @@ def IMU_sensor_add (i):
     seconds = col53.number_input("Seconds", min_value=0, max_value=59, value=0 , key=f"IMU_{i}S")
     time = datetime.combine(date, datetime.min.time()) + timedelta(hours=hours, minutes=minutes, seconds=seconds)
     IMU  = col6.file_uploader(f"IMU {i+1}", type=['txt'], key=f"IMU_{i}")
-    if IMU!=None:
-        IMU  = pd.read_csv(IMU, sep=",", header=0)
+            
     return([type_, X_ori, Y_ori, Z_ori, time, IMU])
 
 def IMU_sensor_cleaning(IMU, time, i):   
-    if IMU!=None:
+    st.write("IMU", type(IMU))
+    if type(IMU)!=None:
+        IMU  = pd.read_csv(IMU, sep=",", header=0)
         IMU= IMU[IMU.columns[:13]]
         IMU['Time'] = pd.to_datetime(IMU['rtcDate']+ ' ' + IMU['rtcTime'])
         IMU['Time'] = IMU['Time']- IMU.iloc[0]['Time']
@@ -131,17 +130,21 @@ def IMU_sensor_cleaning(IMU, time, i):
         IMU = None
     return(IMU)
 
+imu_df = pd.DataFrame(columns = ['Type', 'X_ori', 'Y_ori', 'Z_ori', 'Time', 'IMU'])
+
 for i in range(number_of_sensors):
             imu_df.loc[i] = IMU_sensor_add (i)
+            st.dataframe(imu_df)
 col1, col2 = st.columns([1,1])
 
 IMU_button = col1.button("Convert",use_container_width=True,key="IMU")
-with st.spinner('Wait for it...'):
-    with st.expander("**📊 Results**"):
+with st.expander("**📊 Results**"):
+    with st.spinner('Wait for it...'):
         if IMU_button:
             for i in range(number_of_sensors):
-                IMU = imu_df.loc[i]['IMU']
                 time = imu_df.loc[i]['Time']
+                IMU = imu_df.loc[i]['IMU']
+                st.dataframe(IMU)
                 imu_df.loc[i]['IMU'] = IMU_sensor_cleaning(IMU, time, i)    
                 st.dataframe(imu_df, height=400)
             IMU_df = pd.concat([df for df in imu_df['IMU'] if df is not None], axis=0)
