@@ -4,10 +4,11 @@ import numpy as np
 from streamlit_extras.bottom_container import bottom
 from streamlit_extras.stylable_container import stylable_container
 from datetime import datetime, timedelta
+import plotly.express as px
 
 st.set_page_config(
-    page_title="SIM VAI",
-    page_icon="🚘",
+    page_title="SIM Vehicle Activity Identification",
+    page_icon="🛻",
     layout='wide',
     initial_sidebar_state = "collapsed"
 )
@@ -111,13 +112,14 @@ def IMU_sensor_add (i):
     seconds = col53.number_input("Seconds", min_value=0, max_value=59, value=0 , key=f"IMU_{i}S")
     time = datetime.combine(date, datetime.min.time()) + timedelta(hours=hours, minutes=minutes, seconds=seconds)
     IMU  = col6.file_uploader(f"IMU {i+1}", type=['txt'], key=f"IMU_{i}")
-            
+    if IMU !=None:
+        IMU  = pd.read_csv(IMU, sep=",", header=0)
+    else:
+        IMU = pd.DataFrame()
     return([type_, X_ori, Y_ori, Z_ori, time, IMU])
 
 def IMU_sensor_cleaning(IMU, time, i):   
-    st.write("IMU", type(IMU))
-    if type(IMU)!=None:
-        IMU  = pd.read_csv(IMU, sep=",", header=0)
+    if type(IMU)!=None:    
         IMU= IMU[IMU.columns[:13]]
         IMU['Time'] = pd.to_datetime(IMU['rtcDate']+ ' ' + IMU['rtcTime'])
         IMU['Time'] = IMU['Time']- IMU.iloc[0]['Time']
@@ -134,23 +136,23 @@ imu_df = pd.DataFrame(columns = ['Type', 'X_ori', 'Y_ori', 'Z_ori', 'Time', 'IMU
 
 for i in range(number_of_sensors):
             imu_df.loc[i] = IMU_sensor_add (i)
-            st.dataframe(imu_df)
 col1, col2 = st.columns([1,1])
 
 IMU_button = col1.button("Convert",use_container_width=True,key="IMU")
 with st.expander("**📊 Results**"):
     with st.spinner('Wait for it...'):
+        IMU_ed = []
         if IMU_button:
             for i in range(number_of_sensors):
                 time = imu_df.loc[i]['Time']
-                IMU = imu_df.loc[i]['IMU']
-                st.dataframe(IMU)
-                imu_df.loc[i]['IMU'] = IMU_sensor_cleaning(IMU, time, i)    
-                st.dataframe(imu_df, height=400)
-            IMU_df = pd.concat([df for df in imu_df['IMU'] if df is not None], axis=0)
+                IMU  = imu_df.loc[i]['IMU']
+                IMU  = IMU_sensor_cleaning(IMU, time, i)   
+                IMU_ed.append( IMU )
+            imu_df ['IMU_ed'] = IMU_ed
+            IMU_df = pd.concat([df for df in list(imu_df['IMU_ed'])], axis=1)
             st.dataframe(IMU_df, height=400)
 
-IMU_button_plot = col2.button("Plot",use_container_width=True,key="IMU_plot",disabled=IMU_button)
+IMU_button_plot = col2.button("Plot",use_container_width=True,key="IMU_plot",disabled=(IMU_button==False))
 with st.spinner('Wait for it...'):
     with st.expander("**📊 Plots**"):
         if IMU_button:
@@ -185,3 +187,15 @@ st.divider()
 #GPS Data Cleaning
 col1 , col2 = st.columns([2,2],gap="medium")
 col1.write("### 🧭 GPS")
+col1.write("In this step, we are going to upload the GPS files comming from teh vehicle's dashcam.")
+GPS_files = col2.file_uploader("Select all your GPS files!", type=['TXT'], key="GPS", accept_multiple_files=True)
+GPS_button_plot = st.button("Analyze",use_container_width=True,key="GPS_file convert")
+st.write(pd.DataFrame(GPS_files[0]))
+if GPS_button_plot:
+    files= []
+    for file in GPS_files:
+        files.append(pd.read_csv(file, sep=",", header=0))
+    GPS_data = pd.concat(files, axis=1)
+    st.dataframe(GPS_data)
+else:
+    st.error("Please upload the file first 🤨!")
