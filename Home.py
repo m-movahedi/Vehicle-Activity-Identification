@@ -190,12 +190,3 @@ col1.write("### 🧭 GPS")
 col1.write("In this step, we are going to upload the GPS files comming from teh vehicle's dashcam.")
 GPS_files = col2.file_uploader("Select all your GPS files!", type=['TXT'], key="GPS", accept_multiple_files=True)
 GPS_button_plot = st.button("Analyze",use_container_width=True,key="GPS_file convert")
-st.write(pd.DataFrame(GPS_files[0]))
-if GPS_button_plot:
-    files= []
-    for file in GPS_files:
-        files.append(pd.read_csv(file, sep=",", header=0))
-    GPS_data = pd.concat(files, axis=1)
-    st.dataframe(GPS_data)
-else:
-    st.error("Please upload the file first 🤨!")
