@@ -31,8 +31,6 @@ with st.sidebar.container():
     col2.page_link("pages/04_Help.py",use_container_width = True)
 
 
-
-st.write("### Importing the data")
 st.divider()
 
 # Get time        
