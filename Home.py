@@ -27,8 +27,8 @@ with st.sidebar.container():
     col1.image("Misc/RIDER.png", use_column_width=True) 
     col2.image("Misc/College.png", use_column_width=True)
     col1, col2 = st.columns([2,2])
-    col1.page_link("pages/05_About.py",use_container_width = True)
-    col2.page_link("pages/04_Help.py",use_container_width = True)
+    col1.page_link("./pages/05_About.py",use_container_width = True)
+    col2.page_link("./pages/04_Help.py",use_container_width = True)
 
 
 
