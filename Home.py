@@ -185,6 +185,6 @@ st.divider()
 #GPS Data Cleaning
 col1 , col2 = st.columns([2,2],gap="medium")
 col1.write("### 🧭 GPS")
-col1.write("In this step, we are going to upload the GPS files comming from teh vehicle's dashcam.")
+col1.write("In this step, we are going to upload the GPS files extracted from the vehicle's dashcam.")
 GPS_files = col2.file_uploader("Select all your GPS files!", type=['TXT'], key="GPS", accept_multiple_files=True)
 GPS_button_plot = st.button("Analyze",use_container_width=True,key="GPS_file convert")
