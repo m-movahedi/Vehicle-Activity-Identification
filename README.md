@@ -27,7 +27,6 @@ For more information about the project or to apply, please contact:
 * Maral Nazemi, Graduate Research Assistant mn22a@fsu.edu
 
 * Undergraduate Research Assistants:
-
   - Sierra Smith
-
   - Victor Culpepper
+  - Katherine Short
