@@ -1,6 +1,7 @@
 # Vehicle Activity Identification: Data Collection App
 
-This Research Experience for Undergraduates (REU) project is generously supported by the National Science Foundation (NSF) and the Resilient Infrastructure & Disaster Response Center (RIDER) at the FAMU-FSU College of Engineering. Our project focuses on the innovative use of Inertial Measurement Unit (IMU) sensors to identify and analyze vehicle movement. This research aims to enhance the safety and efficiency of transportation systems by providing more accurate data on vehicle dynamics.
+This Research Experience for Undergraduates (REU) project is generously supported by the National Science Foundation (NSF) and the Resilient Infrastructure & Disaster Response Center (RIDER) at the FAMU-FSU College of Engineering. Our project focuses on the innovative use of Inertial Measurement Unit (IMU) sensors to identify and analyze vehicle movement. This research aims to enhance the safety and efficiency of transportation systems by providing more accurate data on vehicle dynamics. You can access the data cleaning tool using the following like:
+https://sim-vai.streamlit.app/
 
 ## Objectives 🎯
 
