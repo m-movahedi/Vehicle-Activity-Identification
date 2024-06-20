@@ -21,7 +21,7 @@ st.write("# Vehicle Activity Identification 🚘")
 
 
 
-with st.sidebar.container(border=True):
+with st.sidebar.container():
     st.write("Vehicel Activity Identification (VAI)",)
     col1, col2 = st.columns([2,2])
     col1.image("Misc/RIDER.png", use_column_width=True) 
