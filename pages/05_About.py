@@ -26,5 +26,5 @@ st.markdown("""- **Dr. Juyeong Choi** Assistant Professor\t jchoi@eng.famu.fsu.e
 - **Maral Nazemi** Graduate Research Assistant\t mn22a@fsu.edu
 - **Undergraduate Research Assistants:**\n
     - **Sierra Smith**\n
-    - **Katherine Short**\n
-    - **Victor Culpepper**""")
+    - **Victor Culpepper**\n
+    - **Katherine Short**""")
