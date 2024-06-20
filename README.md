@@ -16,3 +16,17 @@ The outcomes of this research are expected to have significant impacts on multip
 
 * Technological: Advancement in sensor technologies and data analysis techniques.
 * Educational: Providing valuable hands-on research experience to undergraduate students, enhancing their skills and preparing them for future careers in engineering and technology.
+
+## Contact Information 📧
+For more information about the project or to apply, please contact:
+* Dr. Juyeong Choi, Assistant Professor jchoi@eng.famu.fsu.edu
+
+* Mohammad Movahedi, Graduate Research Assistant mmovahedi@fsu.edu
+
+* Maral Nazemi, Graduate Research Assistant mn22a@fsu.edu
+
+* Undergraduate Research Assistants:
+
+  - Sierra Smith
+
+  - Victor Culpepper
