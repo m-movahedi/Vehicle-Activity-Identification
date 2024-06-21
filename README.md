@@ -17,7 +17,7 @@ The outcomes of this research are expected to have significant impacts on multip
 * Technological: Advancement in sensor technologies and data analysis techniques.
 * Educational: Providing valuable hands-on research experience to undergraduate students, enhancing their skills and preparing them for future careers in engineering and technology.
 
-## How to use:
+## How to use 🤔:
 1. **Web App**: Access the data cleaning tool using https://sim-vai.streamlit.app/ . Running the app online does come with memory and file size limitaiton.
 2. **Microsoft Windows™**: Download the repository as a .Zip file and extract it. Click on "SIM-VAI" to lunch the app in your default browser.
 
