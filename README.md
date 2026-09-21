@@ -6,6 +6,7 @@ This Research Experience for Undergraduates (REU) project is generously supporte
 
 The primary objective of this REU project is to develop and refine algorithms that can effectively interpret data from IMU sensors to detect and categorize different types of vehicle movements. By achieving this, the project seeks to contribute to the development of advanced driver-assistance systems (ADAS) and autonomous vehicle technologies. Participants in this project will engage in a variety of research activities, including:
 
+
 Designing and implementing experiments to gather accurate IMU data from vehicles under different conditions.
 Developing machine learning models to interpret IMU data and recognize patterns in vehicle behavior.
 Collaborating with industry experts and academics to integrate findings into broader transportation system analyses.
